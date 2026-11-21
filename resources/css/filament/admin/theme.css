@@ -1,0 +1,46 @@
+@import '/vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+/* Warm cream canvas for the admin panel */
+:root {
+    --brand-cream: #FBF7F0;
+    --brand-beige: #F2E8D8;
+    --brand-sand: #D6B07D;
+    --brand-espresso: #5C3A21;
+    --brand-ink: #2E2219;
+}
+
+.fi-body {
+    background-color: var(--brand-cream);
+    color: var(--brand-ink);
+}
+
+.fi-sidebar,
+.fi-topbar > nav {
+    background-color: var(--brand-beige);
+}
+
+.fi-sidebar-item-active > a,
+.fi-sidebar-item-active > button {
+    background-color: rgb(214 176 125 / 0.35);
+}
+
+.fi-sidebar-group-label {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
+.fi-section,
+.fi-ta-ctn,
+.fi-wi-stats-overview-stat {
+    border-radius: 1rem;
+    box-shadow: 0 1px 0 rgb(92 58 33 / 0.04), 0 8px 24px -16px rgb(92 58 33 / 0.2);
+}
+
+.fi-simple-layout {
+    background:
+        radial-gradient(60rem 30rem at 50% -10%, rgb(214 176 125 / 0.35), transparent 70%),
+        var(--brand-cream);
+}

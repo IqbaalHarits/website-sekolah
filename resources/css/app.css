@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------
+ * Design tokens — RGB channels so Tailwind alpha modifiers work.
+ * ------------------------------------------------------------- */
+@layer base {
+    :root {
+        --color-sand: 214 176 125;     /* #D6B07D  Primary — warna dinding bangunan */
+        --color-cream: 251 247 240;    /* #FBF7F0  Background utama */
+        --color-beige: 242 232 216;    /* #F2E8D8  Background sekunder */
+        --color-espresso: 92 58 33;    /* #5C3A21  Accent / CTA — cokelat kolom & kayu */
+        --color-ink: 46 34 25;         /* #2E2219  Teks utama */
+    }
+
+    html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        @apply bg-cream font-sans text-ink antialiased;
+        font-feature-settings: 'ss01', 'cv11';
+        text-rendering: optimizeLegibility;
+    }
+
+    h1, h2, h3, h4 {
+        @apply font-display text-espresso;
+        font-optical-sizing: auto;
+    }
+
+    ::selection {
+        @apply bg-sand text-ink;
+    }
+
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-espresso;
+    }
+
+    [x-cloak] { display: none !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* ---------------------------------------------------------------
+ * Reusable component classes (Blade components compose these).
+ * ------------------------------------------------------------- */
+@layer components {
+    .container-shell {
+        @apply mx-auto w-full max-w-shell px-5 sm:px-8;
+    }
+
+    .section {
+        @apply py-16 sm:py-24;
+    }
+
+    .eyebrow {
+        @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-espresso/70;
+    }
+    .eyebrow::before {
+        content: '';
+        @apply h-px w-8 bg-sand;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold
+               transition duration-300 ease-out-expo focus-visible:outline;
+    }
+    .btn-primary {
+        @apply btn bg-espresso text-cream shadow-card hover:-translate-y-0.5 hover:bg-espresso-700 hover:shadow-card-hover;
+    }
+    .btn-outline {
+        @apply btn border border-espresso/30 text-espresso hover:border-espresso hover:bg-espresso hover:text-cream;
+    }
+    .btn-sand {
+        @apply btn bg-sand text-ink hover:bg-sand-300;
+    }
+
+    /* Cards */
+    .card {
+        @apply rounded-card border border-sand/30 bg-cream shadow-card transition duration-500 ease-out-expo;
+    }
+    .card-hover {
+        @apply hover:-translate-y-1 hover:shadow-card-hover;
+    }
+
+    .badge {
+        @apply inline-flex items-center rounded-full bg-espresso px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-cream;
+    }
+    .badge-soft {
+        @apply inline-flex items-center rounded-full bg-sand/25 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-espresso;
+    }
+
+    /* Form fields (public contact form) */
+    .field {
+        @apply block w-full rounded-xl border-sand/60 bg-cream px-4 py-3 text-sm text-ink placeholder:text-ink/40
+               focus:border-espresso focus:ring-espresso;
+    }
+    .field-label {
+        @apply mb-1.5 block text-sm font-medium text-espresso;
+    }
+}
